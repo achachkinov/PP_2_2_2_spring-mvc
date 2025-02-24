@@ -11,6 +11,10 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import web.dao.CarDao;
+import web.dao.CarHibernateDaoImpl;
+import web.model.Car;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan("web")
@@ -38,6 +42,17 @@ public class WebConfig implements WebMvcConfigurer {
         templateEngine.setTemplateResolver(templateResolver());
         templateEngine.setEnableSpringELCompiler(true);
         return templateEngine;
+    }
+
+    @Bean
+    public CarDao carDao() {
+        CarDao carDao = new CarHibernateDaoImpl();
+        carDao.add( new Car("Camry", "XV70", "silver") );
+        carDao.add( new Car("3 Series", "G20", "black") );
+        carDao.add( new Car("Mustang", "S550", "red") );
+        carDao.add( new Car("Model S", "Plaid", "white") );
+        carDao.add( new Car("A4", "B9", "grey") );
+        return carDao;
     }
 
 
