@@ -33,12 +33,7 @@ public class HelloController {
 	
 	@GetMapping(value = "/cars")
 	public String printCars( @RequestParam(value = "count", required = false) Integer count, ModelMap model ) {
-		List<Car> cars;
-		if ( count == null ) {
-			cars = carServise.listOfCars();
-		} else {
-			cars = carServise.listOfCars( count );
-		}
+		List<Car> cars = carServise.listOfCars( count );
 		model.addAttribute( "car", cars );
 		return "cars";
 	}

@@ -7,6 +7,6 @@ import web.model.Car;
 public interface CarServise {
     void add(Car car);
     List<Car> listOfCars();
-    List<Car> listOfCars( int amount );
+    List<Car> listOfCars( Integer amount );
 }
 

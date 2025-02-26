@@ -12,9 +12,12 @@ import web.model.Car;
 @Component
 public class CarServiseImpl implements CarServise {
 
-    @Autowired
-    private CarDao carDao;
+    private final CarDao carDao;
 
+    @Autowired
+    public CarServiseImpl(CarDao carDao) {
+        this.carDao = carDao;
+    }
 
     @Override
     public void add(Car car) {
@@ -27,8 +30,11 @@ public class CarServiseImpl implements CarServise {
     }
 
     @Override
-    public List<Car> listOfCars( int amount ) {
-        return carDao.listOfCars( amount );
+    public List<Car> listOfCars( Integer amount ) {
+		if ( amount == null ) {
+			return carDao.listOfCars();
+		} else {
+			return carDao.listOfCars( amount );
+		}
     }
-    
 }
